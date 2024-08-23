@@ -43,3 +43,4 @@ num4=[random.randint(1,6),random.randint(1,6),random.randint(1,6),random.randint
 print(num3)
 print(num4)
 
+#7
