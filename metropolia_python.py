@@ -1,7 +1,5 @@
 import math
 
-import yes
-
 '''
 #1
 print("Hello, World!")
