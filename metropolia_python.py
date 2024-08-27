@@ -1,4 +1,8 @@
 import math
+
+import yes
+
+'''
 #1
 print("Hello, World!")
 print("hello,duxin")
@@ -43,4 +47,61 @@ num4=[random.randint(1,6),random.randint(1,6),random.randint(1,6),random.randint
 print(num3)
 print(num4)
 
-#7
+#2708-1
+money=float(input("input money:"))
+if money>=5:
+  print("you can buy a latte")
+
+#2708-2
+age=int(input("age:"))
+if 15<=age<18:
+    weight=float(input("weight(kg):"))
+if (age>=18 or ( 15<=age<18 and weight>=55) ):
+    print("medicine can be used ")
+else:
+    print("medicine can not be used ")
+
+
+#2708-2
+score=int(input("score:"))
+if score>=90:
+    print("your grade is A1")
+elif score>=80:
+    print("your grade is A2")
+elif score>=70:
+    print("your grade is B1")
+elif score>=60:
+    print("your grade is B2")
+elif score>=50:
+    print("your grade is C1")
+elif score>=35:
+    print("your grade is C2")
+elif score<35:
+    print("fail")
+
+#2708-3
+wheels = int(input("enter the number of wheels:"))
+if wheels==2:
+    baterry=input("is there baterry :y or n: ")
+    if baterry =="y":
+        print("ebike")
+    elif baterry=="n" :
+        print("bike")
+elif wheels==3:
+    print("tricycle")
+elif wheels==4:
+    print("car")
+else:
+    print("input wrong")
+'''
+#2708-4
+age=int(input("age:"))
+if age>=65:
+    print("you are retired ")
+elif age>=18:
+    print("you are working  ")
+elif age>=7:
+    print("you are studying ")
+elif age>0:
+    print("you are a child ")
+
