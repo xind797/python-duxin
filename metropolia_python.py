@@ -1,4 +1,8 @@
 import math
+from random import randint
+
+from babel.numbers import number_re
+from docutils.nodes import header
 
 '''
 #1
@@ -91,7 +95,7 @@ elif wheels==4:
     print("car")
 else:
     print("input wrong")
-'''
+
 #2708-4
 age=int(input("age:"))
 if age>=65:
@@ -103,3 +107,102 @@ elif age>=7:
 elif age>0:
     print("you are a child ")
 
+
+#2908-example-1
+sum = 0
+counter = 1
+while counter < 10:
+    sum=sum+counter
+    print(f"the counter is {counter},and sum of the the counter with is {sum}")
+    counter=counter+1
+
+
+#2908-example-2
+i = 1
+n=int(input("enter the number:"))
+while i<=n:
+    if i % 2 == 0:
+        print(f" the even number {i}")
+    else:
+        print(f" {i} is the odd number ")
+    i=i+1
+
+#2908-excercise 1
+import random
+target_number = random.randint(1,9)
+number=0
+while True:
+    user_number = int(input("enter a guessing number between 1 and 9:"))
+    if user_number == target_number:
+        print(("well tried"))
+        break
+    else:
+        print(("try again"))
+        number=number+1
+    print("tried",number)
+
+#2908-excercise 2
+user_input=""
+while user_input != "exit":
+    user_input = input("type something (or exit to quit):")
+    print("you typed:" ,user_input)
+
+#2908-excercise 2
+import random
+flipcoin = random.choice(["head","tail"])
+while flipcoin != "head":
+    print("flipped:",flipcoin)
+    flipcoin = random.choice(["head","tail"])
+    print("you flipped",flipcoin)
+    
+
+#conditional (if)
+#problem 1
+length = float(input("enter the length of a zander(cm):"))
+if length < 42 :
+    print("release the fish back into the lake")
+    print("the caught fish is shorter than the size limit:",str(42-length))
+else:
+    print("the caught fish is within the size limit",)
+
+#problem 2
+cabin_class = input("enter the cabin class:")
+LUX = "upper-deck cabin with a balcony"
+A= "above the car deck, equipped with a window"
+B= "windowless cabin above the car deck"
+C= "windowless cabin above the car deck"
+if cabin_class == "LUX":
+    print (LUX)
+elif cabin_class == "A":
+    print (A)
+elif cabin_class == "B":
+    print (B)
+elif cabin_class == "C":
+    print (C)
+
+#problem 3
+gender = str(input("the biological gender is :" ))
+hemoglobin_value = int(input("enter hemoglobin value(g/l):"))
+if gender == "female":
+    if hemoglobin_value < 117:
+        print("the hemoglobin value is low")
+    elif 117 <= hemoglobin_value <= 155:
+        print("the hemoglobin value is normal")
+    elif hemoglobin_value > 155:
+        print("the hemoglobin value is high")
+elif gender == "male":
+    if hemoglobin_value < 134:
+        print("the hemoglobin value is low")
+    elif 134 <= hemoglobin_value <= 167:
+        print("the hemoglobin value is normal")
+    elif hemoglobin_value >=167:
+        print("the hemoglobin value is high")
+'''
+#peoblem4
+year = int(input("enter year:"))
+if year % 100 !=0 and year % 4 == 0:
+    print(f"year {year}  is a leap year")
+elif year % 100 == 0 and year % 400 == 0:
+    print(f"year {year} is a leap year")
+else:
+    print(f"year {year} is not a leap year")
