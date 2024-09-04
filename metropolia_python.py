@@ -1,8 +1,12 @@
 import math
+from ctypes import pythonapi
 from random import randint
 
 from babel.numbers import number_re
 from docutils.nodes import header
+
+
+
 
 '''
 #1
@@ -197,7 +201,7 @@ elif gender == "male":
         print("the hemoglobin value is normal")
     elif hemoglobin_value >=167:
         print("the hemoglobin value is high")
-'''
+
 #peoblem4
 year = int(input("enter year:"))
 if year % 100 !=0 and year % 4 == 0:
@@ -206,3 +210,112 @@ elif year % 100 == 0 and year % 400 == 0:
     print(f"year {year} is a leap year")
 else:
     print(f"year {year} is not a leap year")
+    
+num= int(input("Enter the number: "))
+for n in range(1,num+1):
+    if n%2 == 0:
+        print(f"{n} is even")
+    else:
+        print(f"{n} is odd")
+
+names = []
+name = input('enter your name or quit by entrting "": ' )
+while name != '':
+    names.append(name)
+    name = input('enter your name or quit by entering "":' )
+print(names)
+
+
+#while loop-assignment
+#1
+#Write a program that uses a while loop to print out all numbers divisible by three in the range of 1-1000.
+num1 = 1
+while num1 < 1000:
+    if num1 % 3 == 0:
+        print(num1)
+    num1 = num1 + 1
+
+#2
+#Write a program that converts inches to centimeters until the user inputs a negative value. Then the program ends.
+length = float(input("enter the length (inch): "))
+converted = float(length * 2.54)
+while length >= 0:
+    print(f"coverted into centimeters is,{converted}","centimeters")
+    length = float(input("enter the length (inch): "))
+
+#3
+#Write a program that asks the user to enter numbers until they enter an empty string to quit.
+#Finally, the program prints out the smallest and largest number from the numbers it received.
+
+numbers = [ ]
+number = input("enter a number: ")
+while number != "":
+    numbers.append(number)
+    number= input("enter a number: ")
+if numbers:
+    smallest = min(numbers)
+    largest = max(numbers)
+    print(f"The smallest number is: {smallest}")
+    print(f"The largest number is: {largest}")
+else:
+    print("No numbers were entered.")
+
+#4
+#Write a game where the computer draws a random integer between 1 and 10.
+#The user tries to guess the number until they guess the right number.
+#After each guess the program prints out a text: Too high, Too low or Correct.
+#Notice that the computer must not change the number between guesses.
+import random
+right_number = random.randint(1,10)
+guess = int(input("enter a guess number: "))
+while guess != right_number:
+    if guess > right_number:
+        print("too high")
+    elif guess < right_number:
+        print("too low")
+    guess= int(input("enter a guess number: "))
+print("correct")
+
+#5
+#Write a program that asks the user for a username and password.
+# If either or both are incorrect, the program ask the user to enter the username and password again.
+# This continues until the login information is correct or wrong credentials have been entered five times.
+# If the information is correct, the program prints out Welcome.
+# After five failed attempts the program prints out Access denied. The correct username is python and password rules.
+correct_name = "python"
+correct_password = "rules"
+n = 0
+while n < 5:
+    username = input("enter your username:")
+    password = input("enter your password:")
+    if username == correct_name and password == correct_password:
+        print("welcome!")
+        break
+    else:
+        print("wrong username or password")
+        n=n+1
+if n==5:
+    print("access denied")
+    
+'''
+
+#Let's generate a large number of random points, such as one million, inside square B.
+# Let N be the total number of random points. Each point inside the square is tested for whether it resides inside circle A.
+#Let n be the total number of points that fall inside circle A. Now we have n/N≈π/4, and from that we get π≈4n/N.
+# Write a program that asks the user how many random points to generate,and then calculates the approximate value of pi using the method explained above.
+# At the end, the program prints out the approximation of pi to the user.
+# (Notice that it is easy to test if a point falls inside circle A by testing if it fulfills the inequation x^2+y^2<1.).
+import random
+def pi(num_points):
+    points_in_A = 0
+    for _ in range(num_points):
+        x = random.uniform(-1,1)
+        y = random.uniform(-1,1)
+        if x**2 + y**2 < 1:
+            points_in_A += 1
+    pi = 4 * points_in_A / num_points
+    return pi
+num_points = int(input("enter the number of random points to generate: "))
+approximation_pi = pi(num_points)
+print(f"approximation of pi: {approximation_pi}")
+
