@@ -1,12 +1,11 @@
 import math
+import random
 from ctypes import pythonapi
 from random import randint
 
 from babel.numbers import number_re
 from docutils.nodes import header
-
-
-
+from nose.pyversion import sort_list
 
 '''
 #1
@@ -297,14 +296,7 @@ while n < 5:
 if n==5:
     print("access denied")
     
-'''
-
-#Let's generate a large number of random points, such as one million, inside square B.
-# Let N be the total number of random points. Each point inside the square is tested for whether it resides inside circle A.
-#Let n be the total number of points that fall inside circle A. Now we have n/N≈π/4, and from that we get π≈4n/N.
-# Write a program that asks the user how many random points to generate,and then calculates the approximate value of pi using the method explained above.
-# At the end, the program prints out the approximation of pi to the user.
-# (Notice that it is easy to test if a point falls inside circle A by testing if it fulfills the inequation x^2+y^2<1.).
+#6
 import random
 def pi(num_points):
     points_in_A = 0
@@ -318,4 +310,64 @@ def pi(num_points):
 num_points = int(input("enter the number of random points to generate: "))
 approximation_pi = pi(num_points)
 print(f"approximation of pi: {approximation_pi}")
+
+#module5-assignment  List structures and iterative loops (for)
+#1
+#Write a program that asks the user how many dice to roll.
+#The program rolls all the dice once and prints out the sum of the numbers. Use a for loop.
+dice = int(input("how many dice to roll: "))
+total = 0
+for _ in range(dice):
+    total += random.randint(1,6)
+print(f"the sum of the numbers: {total}")
+
+#2
+#Write a program that asks the user to enter numbers until they input an empty string to quit.
+# At the end, the program prints out the five greatest numbers sorted in descending order.
+# Hint: You can reverse the order of sorted list items by using the sort method with the reverse=True argument.
+list = []
+num = input('enter a number or quit by entering"": ')
+while num !="":
+    list.append(int(num))
+    num = input('enter a number or quit by entering"": ')
+if  list :
+    sorted_list = sorted(list,reverse = True)
+    top5 = sorted_list[:5]
+    print(top5)
+else:
+    print("No numbers were entered.")
+
+#3
+#Write a program that asks the user for an integer and tells if the number is a prime number.
+number = int(input('enter a number: '))
+if number > 1:
+    for i in range(2,number-1):
+        if number % i == 0:
+            print(f"{number} is not a prime number")
+            break
+    else:
+            print(f"{number} a prime number")
+else:
+    print("number should be greater than one")
+
+#4
+city_list = []
+city_name = input('enter your city name or quit by entering"": ')
+while city_name !="":
+    city_list.append(city_name)
+    city_name = input('enter your city name or quit by entering"": ')
+for city in city_list:
+    print(city)
+'''
+
+
+
+
+
+
+
+
+
+
+
 
