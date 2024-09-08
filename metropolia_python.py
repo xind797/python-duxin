@@ -349,20 +349,15 @@ if number > 1:
             print(f"{number} a prime number")
 else:
     print("number should be greater than one")
-
+'''
 #4
 city_list = []
-city_name = input('enter your city name or quit by entering"": ')
-while city_name !="":
+for i in range(5):
+    city_name = input(f"enter your name {i + 1}: ")
     city_list.append(city_name)
-    city_name = input('enter your city name or quit by entering"": ')
+print("all the names of cities: ", city_list)
 for city in city_list:
     print(city)
-'''
-
-
-
-
 
 
 
