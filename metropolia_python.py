@@ -349,7 +349,7 @@ if number > 1:
             print(f"{number} a prime number")
 else:
     print("number should be greater than one")
-'''
+
 #4
 city_list = []
 for i in range(5):
@@ -358,6 +358,94 @@ for i in range(5):
 print("all the names of cities: ", city_list)
 for city in city_list:
     print(city)
+'''
+'''
+#module 6
+
+#1:Write a function that returns a random dice roll between 1 and 6. The function should not have any parameters.
+# Write a main program that rolls the dice until the result is 6. The main program should print out the result of each roll.
+def dice_roll():
+    return random.randint(1,6)
+def main():
+    while True:
+        dice_result = dice_roll()
+        print(f"rolled:{dice_result}")
+        if dice_result == 6:
+            print("rolled a 6, stop!")
+            break
+main()
+'''
+'''
+#2
+#modify the function above so that it gets the number of sides on the dice as a parameter.
+# With the modified function you can for example roll a 21-sided role-playing dice.
+#The difference to the last exercise is that the dice rolling in the main program continues
+# until the program gets the maximum number on the dice, which is asked from the user at the beginning.
+side = int(input("how many sides do you want: "))
+def dice_roll(side):
+    return random.randint(1,side)
+def main():
+    while True:
+        dice_result = dice_roll(side)
+        print(f"rolled:{dice_result}")
+        if dice_result == side:
+            print("rolled a largest number, stop!")
+            break
+main()
+
+#3
+def convert(gallon):
+    return  0.2642*gallon
+def main():
+    while True:
+        gallon = int(input("how many gallons : "))
+        if gallon < 0:
+            break
+        volume_in_liters=convert(gallon)
+        print(f"volume in liters: {volume_in_liters}")
+main()
+
+#4
+def calc_sum(list):
+    return sum(list)
+def main():
+        list = [56,87,9,45,1]
+        sum_in_list = calc_sum(list)
+        print(f"the sum of the numbers: {sum_in_list}")
+main()
+
+#5
+def remove_uneven(list):
+    new_list = []
+    for num in list:
+        if num % 2 == 0:
+            new_list.append(num)
+    return new_list
+def main():
+    list = [12,13,14,15,16,17,18,19,20]
+    new_list = remove_uneven(list)
+    print(f"the original list: {list}")
+    print(f"the new list: {new_list}")
+main()
+'''
+#6
+def unit_price(diameter,price):
+    area = 3.14*(diameter/2)**2
+    result = (price*10000)/area
+    return result
+def main():
+    diameter1 = int(input("enter the diameter of the first pizza(cm): "))
+    diameter2 = int(input("enter the diameter of the second pizza(cm): "))
+    price1 = float(input("enter the price of the first pizza(euros): "))
+    price2 = float(input("enter the price of the second pizza(euros): "))
+    unit_price1 = unit_price(diameter1,price1)
+    unit_price2 = unit_price(diameter2,price2)
+    if unit_price1 > unit_price2:
+        print(f"the second pizza has better value")
+    else:
+        print(f"the first pizza has better value")
+main()
+
 
 
 
