@@ -61,7 +61,7 @@ if money>=5:
 age=int(input("age:"))
 if 15<=age<18:
     weight=float(input("weight(kg):"))
-if (age>=18 or ( 15<=age<18 and weight>=55) ):
+elif (age>=18 or ( 15<=age<18 and weight>=55) ):
     print("medicine can be used ")
 else:
     print("medicine can not be used ")
@@ -133,7 +133,7 @@ while i<=n:
 #2908-excercise 1
 import random
 target_number = random.randint(1,9)
-number=0
+number=1
 while True:
     user_number = int(input("enter a guessing number between 1 and 9:"))
     if user_number == target_number:
@@ -142,12 +142,12 @@ while True:
     else:
         print(("try again"))
         number=number+1
-    print("tried",number)
+print("tried",number,"times")
 
 #2908-excercise 2
 user_input=""
 while user_input != "exit":
-    user_input = input("type something (or exit to quit):")
+    user_input = input("type something (or type exit to quit):")
     print("you typed:" ,user_input)
 
 #2908-excercise 2
@@ -210,6 +210,7 @@ elif year % 100 == 0 and year % 400 == 0:
 else:
     print(f"year {year} is not a leap year")
     
+
 num= int(input("Enter the number: "))
 for n in range(1,num+1):
     if n%2 == 0:
@@ -218,7 +219,7 @@ for n in range(1,num+1):
         print(f"{n} is odd")
 
 names = []
-name = input('enter your name or quit by entrting "": ' )
+name = input('enter your name or quit by entrting "": ')
 while name != '':
     names.append(name)
     name = input('enter your name or quit by entering "":' )
@@ -233,6 +234,13 @@ while num1 < 1000:
     if num1 % 3 == 0:
         print(num1)
     num1 = num1 + 1
+
+
+for num1 in range(1,1001):
+    if num1 % 3 == 0:
+        print(num1)
+
+
 
 #2
 #Write a program that converts inches to centimeters until the user inputs a negative value. Then the program ends.
@@ -355,11 +363,10 @@ city_list = []
 for i in range(5):
     city_name = input(f"enter your name {i + 1}: ")
     city_list.append(city_name)
-print("all the names of cities: ", city_list)
 for city in city_list:
     print(city)
-'''
-'''
+
+
 #module 6
 
 #1:Write a function that returns a random dice roll between 1 and 6. The function should not have any parameters.
@@ -374,8 +381,8 @@ def main():
             print("rolled a 6, stop!")
             break
 main()
-'''
-'''
+
+
 #2
 #modify the function above so that it gets the number of sides on the dice as a parameter.
 # With the modified function you can for example roll a 21-sided role-playing dice.
@@ -427,24 +434,200 @@ def main():
     print(f"the original list: {list}")
     print(f"the new list: {new_list}")
 main()
-'''
+
 #6
 def unit_price(diameter,price):
     area = 3.14*(diameter/2)**2
     result = (price*10000)/area
     return result
-def main():
-    diameter1 = int(input("enter the diameter of the first pizza(cm): "))
-    diameter2 = int(input("enter the diameter of the second pizza(cm): "))
-    price1 = float(input("enter the price of the first pizza(euros): "))
-    price2 = float(input("enter the price of the second pizza(euros): "))
-    unit_price1 = unit_price(diameter1,price1)
-    unit_price2 = unit_price(diameter2,price2)
-    if unit_price1 > unit_price2:
-        print(f"the second pizza has better value")
+diameter1 = int(input("enter the diameter of the first pizza(cm): "))
+diameter2 = int(input("enter the diameter of the second pizza(cm): "))
+price1 = float(input("enter the price of the first pizza(euros): "))
+price2 = float(input("enter the price of the second pizza(euros): "))
+unit_price1 = unit_price(diameter1,price1)
+unit_price2 = unit_price(diameter2,price2)
+if unit_price1 > unit_price2:
+    print(f"the second pizza has better value")
+else:
+    print(f"the first pizza has better value")
+
+#module7:
+#1
+#Write a program that asks the user for a number of a month and then prints out the corresponding season
+# (spring, summer, autumn, winter).
+# Save the seasons as strings into a tuple in your program.
+# We can define each season to last three months, December being the first month of winter.
+seasons = ("winter","spring", "summer", "fall")
+def  find_season(month):
+    if month in [12,1,2]:
+        return seasons[0]
+    elif month in [3,4,5]:
+        return seasons[1]
+    elif month in [6,7,8]:
+        return seasons[2]
+    elif month in [9,10,11]:
+        return seasons[3]
     else:
-        print(f"the first pizza has better value")
-main()
+        print("input a valid month")
+try:
+    month = int(input("enter the month: "))
+    season = find_season(month)
+    print(f"the season is:{season}")
+except ValueError:
+    print("input a valid month")
+
+#2
+names_set = set()
+while True:
+    name = input("Enter a name (or press Enter to stop): ")
+    if name == "":
+        break
+    if name in names_set:
+        print("Existing name")
+    else:
+        print("New name")
+        names_set.add(name)
+print("The entered names are:")
+for name in names_set:
+    print(name)
+
+#3
+airport_data = {}
+while True:
+    print("\nWhat would you like to do?")
+    print("1. Enter a new airport")
+    print("2. Fetch an existing airport's information")
+    print("3. Quit")
+    choice = input("Enter your choice (1, 2, or 3): ")
+    if choice == '1':
+        icao_code = input("Enter the ICAO code of the airport: ").upper()
+        airport_name = input("Enter the name of the airport: ")
+        airport_data[icao_code] = airport_name
+        print(f"Airport {airport_name} with ICAO code {icao_code} added.")
+    elif choice == "2":
+        icao_code = input("Enter the ICAO code of the airport to fetch: ").upper()
+        if icao_code in airport_data:
+            print(f"The name of the airport with ICAO code {icao_code} is {airport_data[icao_code]}.")
+        else:
+            print(f"No airport found with ICAO code {icao_code}.")
+    elif choice == "3":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid option. Please choose 1, 2, or 3.")
+
+
+#MODULE8:
+#1
+# Write a program that asks the user to enter the ICAO code of an airport.
+# The program fetches and prints out the corresponding airport name and location (town) from the airport database
+# used on this course. The ICAO codes are stored in the ident column of the airport table.
+
+import mysql.connector
+
+def get_info_by_icao(ident):
+    sql = f"SELECT ident, name, iso_country FROM airport WHERE ident='{ident}'"
+    print(sql)
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    if cursor.rowcount >0 :
+        for row in result:
+            print(f"The name of {row[0]} is {row[1]} located at {row[2]}.")
+    return
+
+# Main program
+connection = mysql.connector.connect(
+    host="localhost",
+    port=3306,
+    database="flight_game",
+    password="123456",
+    user="root",
+    autocommit=True,
+    charset='utf8mb4',
+    collation='utf8mb4_general_ci'
+    )
+
+ident = input("Enter ident: ")
+get_info_by_icao(ident)
+
+
+#2
+#Write a program that asks the user to enter the area code (for example FI) and prints out the airports
+#located in that country ordered by airport type. For example, Finland has 65 small airports,15 helicopter airports and so on.
+import mysql.connector
+
+def get_type_by_areacode(iso_country):
+    sql = (f"SELECT type,count(*) as count FROM airport WHERE iso_country='{iso_country}' group by type order by type")
+    print(sql)
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    if result:
+        print(f"Airports in {iso_country}:")
+        for row in result:
+            print(f"{row[0]}: {row[1]}")
+    else:
+        print(f"No airports found for the area code: {iso_country}")
+    return
+# Main program
+connection = mysql.connector.connect(
+    host="localhost",
+    port=3306,
+    database="flight_game",
+    password="123456",
+    user="root",
+    autocommit=True,
+    charset='utf8mb4',
+    collation='utf8mb4_general_ci'
+    )
+iso_country = input("Enter the area code: ")
+get_type_by_areacode(iso_country)
+'''
+
+#3Write a program that asks the user to enter the ICAO codes of two airports.
+# The program prints out the distance between the two airports in kilometers.
+import mysql.connector
+from geopy.distance import geodesic
+
+def coordinates(cursor, ident):
+    sql = f"SELECT latitude_deg, longitude_deg FROM airport WHERE ident = '{ident}'"
+    cursor.execute(sql)
+    return cursor.fetchall()
+
+def calculate_distance(coord1, coord2):
+    return geodesic(coord1, coord2).kilometers
+
+def main():
+    airport1_icao = input("Enter the ICAO code of the first airport: ").upper()
+    airport2_icao = input("Enter the ICAO code of the second airport: ").upper()
+
+    connection = mysql.connector.connect(
+        host="localhost",
+        port=3306,
+        database="flight_game",
+        password="123456",
+        user="root",
+        autocommit=True,
+        charset='utf8mb4',
+        collation='utf8mb4_general_ci'
+    )
+
+    cursor = connection.cursor()
+    airport1_coords = coordinates(cursor, airport1_icao)
+    airport2_coords = coordinates(cursor, airport2_icao)
+
+    if airport1_coords is None or airport2_coords is None:
+        print("One or both airports not found in the database.")
+    else:
+        distance = calculate_distance(airport1_coords, airport2_coords)
+        print(f"The distance between {airport1_icao} and {airport2_icao} is {distance:.3f} kilometers.")
+
+    cursor.close()
+    connection.close()
+
+if __name__ == "__main__":
+    main()
 
 
 
