@@ -583,7 +583,7 @@ connection = mysql.connector.connect(
     )
 iso_country = input("Enter the area code: ")
 get_type_by_areacode(iso_country)
-'''
+
 
 #3Write a program that asks the user to enter the ICAO codes of two airports.
 # The program prints out the distance between the two airports in kilometers.
@@ -628,8 +628,88 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
+#MODULE9
+
+class Car:
+    def __init__(self, registration_number, max_speed):
+        self.registration_number = registration_number
+        self.max_speed = max_speed
+        self.current_speed = 0
+        self.travelled_distance = 0
+
+    # Method to accelerate or decelerate the car
+    def accelerate(self, change):
+        self.current_speed += change
+        # Ensure current speed is within the allowed range
+        if self.current_speed > self.max_speed:
+            self.current_speed = self.max_speed
+        elif self.current_speed < 0:
+            self.current_speed = 0
+
+    def __str__(self):
+        return (f"Registration Number: {self.registration_number}\n"
+                f"Maximum Speed: {self.max_speed} km/h\n"
+                f"Current Speed: {self.current_speed} km/h\n"
+                f"Traveled Distance: {self.travelled_distance} km")
+
+    def drive(self, time):
+        self.travelled_distance += self.current_speed * time
 
 
+car1 = Car("ABC-123", 142)
+print(car1)
+
+car1.accelerate(30)
+car1.accelerate(70)
+car1.accelerate(50)
+print(f"after acceleration, current_speed: {car1.current_speed} km/h")
+car1.accelerate(-200)
+print(f"after emergency brake, current_speed: {car1.current_speed} km/h")
+
+car2 = Car("ABC-123", 142)
+car2.current_speed = 60
+car2.travelled_distance = 2000
+car2.drive(1.5)
+print("\nAfter driving for 1.5 hours:")
+print(f"Traveled distance: {car2.travelled_distance} km")
+
+def main():
+    # Create a list of 10 car objects with random max speeds
+    cars = []
+    for i in range(1, 11):
+        registration_number = f"ABC-{i}"
+        max_speed = random.randint(100, 200)  # Random value between 100 and 200 km/h
+        car = Car(registration_number, max_speed)
+        cars.append(car)
+
+    # Start the race
+    race_ongoing = True
+    while race_ongoing:
+        # For each car, change speed and drive for an hour
+        for car in cars:
+            speed_change = random.randint(-10, 15)  # Random value between -10 and +15 km/h
+            car.accelerate(speed_change)
+            car.drive(1)
+
+            # Check if any car has reached or exceeded 10,000 km
+            if car.travelled_distance >= 10000:
+                race_ongoing = False
+                break
+
+    # Print the properties of each car
+    print("\nFinal results of the car race:")
+    print(f"{'Registration':10} | {'Max Speed':12} | {'Current Speed':12} | {'Traveled Distance':15}")
+    print("-" * 60)
+
+    for car in cars:
+        print(
+            f"{car.registration_number:<15} | {car.max_speed:<15} | {car.current_speed:<20} | {car.travelled_distance:<20.2f}")
+
+
+# Run the main program
+if __name__ == "__main__":
+    main()
 
 
 
