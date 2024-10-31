@@ -7,7 +7,7 @@ from babel.numbers import number_re
 from docutils.nodes import header
 from nose.pyversion import sort_list
 
-'''
+#MODULE2. Variables and interactive programs
 #1
 print("Hello, World!")
 print("hello,duxin")
@@ -52,6 +52,7 @@ num4=[random.randint(1,6),random.randint(1,6),random.randint(1,6),random.randint
 print(num3)
 print(num4)
 
+#INCLASS EXERCISE
 #2708-1
 money=float(input("input money:"))
 if money>=5:
@@ -159,7 +160,7 @@ while flipcoin != "head":
     print("you flipped",flipcoin)
     
 
-#conditional (if)
+#MODULE3. Conditional structures (if)
 #problem 1
 length = float(input("enter the length of a zander(cm):"))
 if length < 42 :
@@ -226,24 +227,18 @@ while name != '':
 print(names)
 
 
-#while loop-assignment
+#MODULE4. While loops (while)
 #1
-#Write a program that uses a while loop to print out all numbers divisible by three in the range of 1-1000.
 num1 = 1
 while num1 < 1000:
     if num1 % 3 == 0:
         print(num1)
     num1 = num1 + 1
-
-
 for num1 in range(1,1001):
     if num1 % 3 == 0:
         print(num1)
 
-
-
 #2
-#Write a program that converts inches to centimeters until the user inputs a negative value. Then the program ends.
 length = float(input("enter the length (inch): "))
 converted = float(length * 2.54)
 while length >= 0:
@@ -251,9 +246,6 @@ while length >= 0:
     length = float(input("enter the length (inch): "))
 
 #3
-#Write a program that asks the user to enter numbers until they enter an empty string to quit.
-#Finally, the program prints out the smallest and largest number from the numbers it received.
-
 numbers = [ ]
 number = input("enter a number: ")
 while number != "":
@@ -268,10 +260,6 @@ else:
     print("No numbers were entered.")
 
 #4
-#Write a game where the computer draws a random integer between 1 and 10.
-#The user tries to guess the number until they guess the right number.
-#After each guess the program prints out a text: Too high, Too low or Correct.
-#Notice that the computer must not change the number between guesses.
 import random
 right_number = random.randint(1,10)
 guess = int(input("enter a guess number: "))
@@ -284,11 +272,6 @@ while guess != right_number:
 print("correct")
 
 #5
-#Write a program that asks the user for a username and password.
-# If either or both are incorrect, the program ask the user to enter the username and password again.
-# This continues until the login information is correct or wrong credentials have been entered five times.
-# If the information is correct, the program prints out Welcome.
-# After five failed attempts the program prints out Access denied. The correct username is python and password rules.
 correct_name = "python"
 correct_password = "rules"
 n = 0
@@ -319,10 +302,8 @@ num_points = int(input("enter the number of random points to generate: "))
 approximation_pi = pi(num_points)
 print(f"approximation of pi: {approximation_pi}")
 
-#module5-assignment  List structures and iterative loops (for)
+#MODULE5.List structures and iterative loops (for)
 #1
-#Write a program that asks the user how many dice to roll.
-#The program rolls all the dice once and prints out the sum of the numbers. Use a for loop.
 dice = int(input("how many dice to roll: "))
 total = 0
 for _ in range(dice):
@@ -330,9 +311,6 @@ for _ in range(dice):
 print(f"the sum of the numbers: {total}")
 
 #2
-#Write a program that asks the user to enter numbers until they input an empty string to quit.
-# At the end, the program prints out the five greatest numbers sorted in descending order.
-# Hint: You can reverse the order of sorted list items by using the sort method with the reverse=True argument.
 list = []
 num = input('enter a number or quit by entering"": ')
 while num !="":
@@ -346,7 +324,6 @@ else:
     print("No numbers were entered.")
 
 #3
-#Write a program that asks the user for an integer and tells if the number is a prime number.
 number = int(input('enter a number: '))
 if number > 1:
     for i in range(2,number-1):
@@ -367,10 +344,9 @@ for city in city_list:
     print(city)
 
 
-#module 6
+#MODULE6.Functions
 
-#1:Write a function that returns a random dice roll between 1 and 6. The function should not have any parameters.
-# Write a main program that rolls the dice until the result is 6. The main program should print out the result of each roll.
+#1
 def dice_roll():
     return random.randint(1,6)
 def main():
@@ -382,12 +358,7 @@ def main():
             break
 main()
 
-
 #2
-#modify the function above so that it gets the number of sides on the dice as a parameter.
-# With the modified function you can for example roll a 21-sided role-playing dice.
-#The difference to the last exercise is that the dice rolling in the main program continues
-# until the program gets the maximum number on the dice, which is asked from the user at the beginning.
 side = int(input("how many sides do you want: "))
 def dice_roll(side):
     return random.randint(1,side)
@@ -451,12 +422,8 @@ if unit_price1 > unit_price2:
 else:
     print(f"the first pizza has better value")
 
-#module7:
+#MODULE7.Tuple, set, and dictionary
 #1
-#Write a program that asks the user for a number of a month and then prints out the corresponding season
-# (spring, summer, autumn, winter).
-# Save the seasons as strings into a tuple in your program.
-# We can define each season to last three months, December being the first month of winter.
 seasons = ("winter","spring", "summer", "fall")
 def  find_season(month):
     if month in [12,1,2]:
@@ -517,12 +484,8 @@ while True:
         print("Invalid option. Please choose 1, 2, or 3.")
 
 
-#MODULE8:
+#MODULE8.Using relational databases
 #1
-# Write a program that asks the user to enter the ICAO code of an airport.
-# The program fetches and prints out the corresponding airport name and location (town) from the airport database
-# used on this course. The ICAO codes are stored in the ident column of the airport table.
-
 import mysql.connector
 
 def get_info_by_icao(ident):
@@ -553,9 +516,6 @@ get_info_by_icao(ident)
 
 
 #2
-#Write a program that asks the user to enter the area code (for example FI) and prints out the airports
-#located in that country ordered by airport type. For example, Finland has 65 small airports,15 helicopter airports and so on.
-import mysql.connector
 
 def get_type_by_areacode(iso_country):
     sql = (f"SELECT type,count(*) as count FROM airport WHERE iso_country='{iso_country}' group by type order by type")
@@ -585,8 +545,7 @@ iso_country = input("Enter the area code: ")
 get_type_by_areacode(iso_country)
 
 
-#3Write a program that asks the user to enter the ICAO codes of two airports.
-# The program prints out the distance between the two airports in kilometers.
+#3
 import mysql.connector
 from geopy.distance import geodesic
 
@@ -629,7 +588,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-#MODULE9
+#MODULE9.Fundamentals of object-oriented programming
 
 class Car:
     def __init__(self, registration_number, max_speed):
@@ -638,10 +597,8 @@ class Car:
         self.current_speed = 0
         self.travelled_distance = 0
 
-    # Method to accelerate or decelerate the car
     def accelerate(self, change):
         self.current_speed += change
-        # Ensure current speed is within the allowed range
         if self.current_speed > self.max_speed:
             self.current_speed = self.max_speed
         elif self.current_speed < 0:
@@ -675,43 +632,125 @@ print("\nAfter driving for 1.5 hours:")
 print(f"Traveled distance: {car2.travelled_distance} km")
 
 def main():
-    # Create a list of 10 car objects with random max speeds
     cars = []
     for i in range(1, 11):
         registration_number = f"ABC-{i}"
-        max_speed = random.randint(100, 200)  # Random value between 100 and 200 km/h
+        max_speed = random.randint(100, 200)
         car = Car(registration_number, max_speed)
         cars.append(car)
 
-    # Start the race
     race_ongoing = True
     while race_ongoing:
-        # For each car, change speed and drive for an hour
         for car in cars:
-            speed_change = random.randint(-10, 15)  # Random value between -10 and +15 km/h
+            speed_change = random.randint(-10, 15)
             car.accelerate(speed_change)
             car.drive(1)
 
-            # Check if any car has reached or exceeded 10,000 km
             if car.travelled_distance >= 10000:
                 race_ongoing = False
                 break
 
-    # Print the properties of each car
     print("\nFinal results of the car race:")
-    print(f"{'Registration':10} | {'Max Speed':12} | {'Current Speed':12} | {'Traveled Distance':15}")
+    print(f"{'Registration number':10} | {'Max Speed':12} | {'Current Speed':12} | {'Travelled Distance':15}")
     print("-" * 60)
 
     for car in cars:
         print(
             f"{car.registration_number:<15} | {car.max_speed:<15} | {car.current_speed:<20} | {car.travelled_distance:<20.2f}")
-
-
-# Run the main program
 if __name__ == "__main__":
     main()
 
-'''
+
+class Race:
+    def __init__(self, name, distance, cars):
+        self.name = name
+        self.distance = distance
+        self.cars = cars
+
+    def hour_passes(self):
+        for car in self.cars:
+            speed_change = random.randint(-10, 15)
+            car.accelerate(speed_change)
+            car.drive(1)
+
+    def print_status(self):
+        print(f"{'Registration number':<15} | {'Max Speed':<12} | {'Current Speed':<12} | {'Travelled Distance':<15}")
+        print("-" * 60)
+        for car in self.cars:
+            print(f"{car.registration_number:<15} | {car.max_speed:<15} | {car.current_speed:<20} | {car.travelled_distance:<20.2f}")
+
+    def race_finished(self):
+        return any(car.travelled_distance >= self.distance for car in self.cars)
+
+def main():
+    cars = []
+    for i in range(1, 11):
+        registration_number = f"ABC-{i}"
+        max_speed = random.randint(100, 200)
+        car = Car(registration_number, max_speed)
+        cars.append(car)
+
+    race = Race("Grand Demolition Derby", 8000, cars)
+    hours_passed = 0
+    while not race.race_finished():
+        race.hour_passes()
+        hours_passed += 1
+        if hours_passed % 10 == 0:
+            print(f"\n The new race has passed:{hours_passed} hours")
+            race.print_status()
+    print(f"\nThe new race is over and the total time is {hours_passed} hours.")
+    race.print_status()
+
+if __name__ == "__main__":
+    main()
+
+#MODULE10.Association
+class Elevator:
+    def __init__(self,bottom_floor,top_floor):
+        self.bottom_floor = bottom_floor
+        self.top_floor = top_floor
+        self.current_floor = bottom_floor
+    def floor_up(self):
+        if self.current_floor < self.top_floor:
+            self.current_floor = self.current_floor + 1
+            print(f"The elevator moved up to {self.current_floor}")
+    def floor_down(self):
+        if self.current_floor > self.bottom_floor:
+            self.current_floor = self.current_floor - 1
+            print(f"The elevator moved down to {self.current_floor}")
+    def go_to_floor(self,destination_floor):
+        if destination_floor < self.bottom_floor or destination_floor > self.top_floor:
+            print(f"Invalid floor number")
+        while self.current_floor < destination_floor:
+            self.floor_up()
+        while self.current_floor > destination_floor:
+            self.floor_down()
+        print(f"The elevator gets floor{self.current_floor}")
+
+h = Elevator(1,20)
+h.go_to_floor(5)
+h.go_to_floor(1)
+
+class Building:
+    def __init__(self,bottom_floor,top_floor,number_of_elevators):
+        self.bottom_floor = bottom_floor
+        self.top_floor = top_floor
+        self.elevators = [Elevator(bottom_floor, top_floor) for _ in range(number_of_elevators)]
+
+    def run_elevator(self,elevator_number,destination_floor):
+        if 0 <= elevator_number < len(self.elevators):
+            elevator = self.elevators[elevator_number]
+            elevator.go_to_floor(destination_floor)
+        else:
+            print("Invalid elevator number")
+
+    def fire_alarm(self):
+        for elevator in self.elevators:
+            elevator.go_to_floor(self.bottom_floor)
+
+building1 = Building(1,20,5)
+building1.run_elevator(2,12)
+building1.fire_alarm()
 
 
 
