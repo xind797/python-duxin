@@ -6,7 +6,7 @@ from random import randint
 from babel.numbers import number_re
 from docutils.nodes import header
 from nose.pyversion import sort_list
-
+'''
 #MODULE2. Variables and interactive programs
 #1
 print("Hello, World!")
@@ -587,7 +587,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+'''
 #MODULE9.Fundamentals of object-oriented programming
 
 class Car:
@@ -629,7 +629,7 @@ car2.current_speed = 60
 car2.travelled_distance = 2000
 car2.drive(1.5)
 print("\nAfter driving for 1.5 hours:")
-print(f"Traveled distance: {car2.travelled_distance} km")
+print(f"the car has travelled: {car2.travelled_distance} km")
 
 def main():
     cars = []
@@ -660,7 +660,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-
+#10-4
 class Race:
     def __init__(self, name, distance, cars):
         self.name = name
@@ -703,6 +703,31 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#11-2
+class ElectricCar(Car):
+    def __init__(self, registration_number, max_speed, battery_capacity):
+        super().__init__(registration_number, max_speed)
+        self.battery_capacity = battery_capacity
+
+class GasolineCar(Car):
+    def __init__(self, registration_number, max_speed, volum_of_tank):
+        super().__init__(registration_number, max_speed)
+        self.volum_of_tank = volum_of_tank
+
+electric_car1 = ElectricCar("ABC-15", 180, 52.5)
+gasoline_car1 = GasolineCar("ACD-123",165, 32.3)
+
+electric_car1.current_speed = 120
+electric_car1.drive(3)
+print("After driving for 3 hours:")
+print(f"Electric car has travelled: {electric_car1.travelled_distance} km")
+
+gasoline_car1.current_speed = 129
+gasoline_car1.drive(3)
+print("After driving for 3 hours:")
+print(f"Gasoline car has travelled : {gasoline_car1.travelled_distance} km")
+
 
 #MODULE10.Association
 class Elevator:
@@ -752,5 +777,33 @@ building1 = Building(1,20,5)
 building1.run_elevator(2,12)
 building1.fire_alarm()
 
+#MODULE 11:
+class Publication:
+    def __init__(self, name):
+        self.name = name
 
+
+class Book(Publication):
+    def __init__(self, name, author, page_count):
+        Publication.__init__(self, name)
+        self.author = author
+        self.page_count = page_count
+
+    def print_info(self):
+        return f"the author of the book {self.name} is {self.author} and the book has {self.page_count} pages."
+
+
+class Magazine(Publication):
+    def __init__(self, name, chief_editor):
+        Publication.__init__(self, name)
+        self.chief_editor = chief_editor
+
+    def print_info(self):
+        return f"the chief editor of the magazine {self.name} is {self.chief_editor}"
+
+
+book1 = Book("Compartment No.6", "Rosa Liksom", 192)
+print(book1.print_info())
+magazine1 = Magazine("Donald Duck", "Aki Hyyppä.")
+print(magazine1.print_info())
 
