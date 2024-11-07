@@ -806,4 +806,5 @@ book1 = Book("Compartment No.6", "Rosa Liksom", 192)
 print(book1.print_info())
 magazine1 = Magazine("Donald Duck", "Aki Hyyppä.")
 print(magazine1.print_info())
+#11
 
