@@ -6,6 +6,8 @@ from random import randint
 from babel.numbers import number_re
 from docutils.nodes import header
 from nose.pyversion import sort_list
+from pkg_resources import MODULE
+
 '''
 #MODULE2. Variables and interactive programs
 #1
@@ -587,7 +589,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-'''
+
 #MODULE9.Fundamentals of object-oriented programming
 
 class Car:
@@ -777,7 +779,7 @@ building1 = Building(1,20,5)
 building1.run_elevator(2,12)
 building1.fire_alarm()
 
-#MODULE 11:
+#MODULE 11-1:
 class Publication:
     def __init__(self, name):
         self.name = name
@@ -807,4 +809,107 @@ print(book1.print_info())
 magazine1 = Magazine("Donald Duck", "Aki Hyyppä.")
 print(magazine1.print_info())
 
+#MODULE 12
+#12-1
+import requests
 
+def get_joke():
+    url = "https://api.chucknorris.io/jokes/random"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        joke = response.json().get("value")
+        print(joke)
+    else:
+        print("Failed to retrieve a joke.")
+
+get_joke()
+
+#12-2
+import requests
+
+def get_weather(city_name):
+    api_key = "457738d7dd71b9a371ca30d6d34fa8e4"
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    params = {
+        'q': city_name,
+        'appid': api_key,
+        'units': 'metric'  # Use 'imperial' for Fahrenheit
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        weather_description = data['weather'][0]['description']
+        temperature = data['main']['temp']
+        print(f"Weather in {city_name}: {weather_description.capitalize()}")
+        print(f"Temperature: {temperature}°C")
+    else:
+        print(f"Error: Unable to fetch weather data for {city_name}.")
+
+if __name__ == "__main__":
+    city_name = input("Enter the name of the municipality: ")
+    get_weather(city_name)
+
+#MODULE 13
+
+#13-1
+
+from flask import Flask, jsonify
+import math
+
+app = Flask(__name__)
+
+def check_prime(number):
+    if number <= 1:
+        return False
+    for i in range(2, int(math.sqrt(number)) + 1):
+        if number % i == 0:
+            return False
+    return True
+
+@app.route('/prime_number/<int:number>', methods=['GET'])
+def is_prime(number):
+    number_is_prime = check_prime(number)
+    response = {
+        "Number": number,
+        "isPrime": number_is_prime
+    }
+    return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(use_reloader=True, host='127.0.0.1', port=5000)
+
+'''
+#13-2
+
+from flask import Flask, jsonify, request
+import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    port=3306,
+    database="flight_simulator",
+    user="root",
+    password="123456",
+    autocommit=True,
+    charset='utf8mb4',
+    collation='utf8mb4_general_ci'
+)
+
+app = Flask(__name__)
+
+@app.route('/airport/<icao>', methods=['GET'])
+def get_airport(icao):
+    cursor = connection.cursor(dictionary=True)
+    sql = "SELECT ident AS ICAO, name AS Name, municipality AS Location FROM airport WHERE ident = %s"
+    cursor.execute(sql, (icao,))
+    result = cursor.fetchone()
+    cursor.close()
+
+    if result:
+        return jsonify(result)
+    else:
+        return jsonify({"error": "Airport not found"}), 404
+
+if __name__ == '__main__':
+    app.run(use_reloader=True, host='127.0.0.1', port=5000)
