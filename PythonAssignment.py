@@ -589,7 +589,7 @@ def main():
 
 if __name__ == "__main__":
     main()
-
+'''
 #MODULE9.Fundamentals of object-oriented programming
 
 class Car:
@@ -632,6 +632,7 @@ car2.travelled_distance = 2000
 car2.drive(1.5)
 print("\nAfter driving for 1.5 hours:")
 print(f"the car has travelled: {car2.travelled_distance} km")
+
 
 def main():
     cars = []
@@ -713,9 +714,9 @@ class ElectricCar(Car):
         self.battery_capacity = battery_capacity
 
 class GasolineCar(Car):
-    def __init__(self, registration_number, max_speed, volum_of_tank):
+    def __init__(self, registration_number, max_speed, volume_of_tank):
         super().__init__(registration_number, max_speed)
-        self.volum_of_tank = volum_of_tank
+        self.volum_of_tank = volume_of_tank
 
 electric_car1 = ElectricCar("ABC-15", 180, 52.5)
 gasoline_car1 = GasolineCar("ACD-123",165, 32.3)
@@ -879,7 +880,7 @@ def is_prime(number):
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
 
-'''
+
 #13-2
 
 from flask import Flask, jsonify, request
@@ -900,16 +901,18 @@ app = Flask(__name__)
 
 @app.route('/airport/<icao>', methods=['GET'])
 def get_airport(icao):
-    cursor = connection.cursor(dictionary=True)
-    sql = "SELECT ident AS ICAO, name AS Name, municipality AS Location FROM airport WHERE ident = %s"
-    cursor.execute(sql, (icao,))
-    result = cursor.fetchone()
-    cursor.close()
+    try:
+        with connection.cursor(dictionary=True) as cursor:  # Use dictionary=True for row mapping
+            sql = "SELECT ident AS ICAO, name AS Name, municipality AS Location FROM airport WHERE ident = %s"
+            cursor.execute(sql, (icao,))
+            result = cursor.fetchone()
 
-    if result:
-        return jsonify(result)
-    else:
-        return jsonify({"error": "Airport not found"}), 404
+            if result:
+                return jsonify(result)
+            else:
+                return jsonify({"error": "No airport found"}), 404
+    except mysql.connector.Error as err:
+        return jsonify({"error": f"Database error: {err}"}), 500
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=5000)
