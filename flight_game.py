@@ -280,5 +280,4 @@ def main():
         print(f"You collected the following elements: {', '.join(collected_elements)}.")
     else:
         print("You didn't collect any elements.")
-if __name__ == '__main__':
-    main()
+main()
