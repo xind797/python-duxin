@@ -1,4 +1,5 @@
 
+#31.10.2024 Wednesday
 class Person:
     def __init__(self, name: str, age: int,gender):
         self.name = name
@@ -53,4 +54,5 @@ authormembers.append(authormember1)
 authormembers.append(authormember2)
 for authormember in authormembers:
     print(authormember.introduce())
+
 

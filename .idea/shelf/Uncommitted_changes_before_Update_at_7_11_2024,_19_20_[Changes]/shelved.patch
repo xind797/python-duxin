@@ -1,0 +1,89 @@
+Index: database test.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import mysql.connector\nconnection = mysql.connector.connect(\n    host=\"localhost\",\n    port=3306,\n    database=\"flight_game\",\n    password=\"123456\",\n    user=\"root\",\n    autocommit=True,\n    charset='utf8mb4',\n    collation='utf8mb4_general_ci'\n    )\n\n
+===================================================================
+diff --git a/database test.py b/database test.py
+--- a/database test.py	(revision b460516e463b3f2beb71185fb3e4aecd218f5bff)
++++ b/database test.py	(date 1728657984880)
+@@ -1,12 +1,79 @@
+ import mysql.connector
++
+ connection = mysql.connector.connect(
+     host="localhost",
+     port=3306,
+-    database="flight_game",
++    database="flight_simulator",
+     password="123456",
+     user="root",
+     autocommit=True,
+     charset='utf8mb4',
+     collation='utf8mb4_general_ci'
+     )
++#1
++# Write a program that asks the user to enter the ICAO code of an airport.
++# The program fetches and prints out the corresponding airport name and location (town) from the airport database
++# used on this course. The ICAO codes are stored in the ident column of the airport table.
++'''
++def get_info_by_icao(ident):
++    sql = f"SELECT ident, name, iso_country FROM airport WHERE ident='{ident}'"
++    #print(sql)
++    cursor = connection.cursor()
++    cursor.execute(sql)
++    result = cursor.fetchall()
++    if cursor.rowcount > 0:
++        for row in result:
++            print(f"the name of {row[0]} is {row[1]} located at {row[2]}")
++    return
++
++ident = input("Enter ident: ")
++get_info_by_icao(ident)
++
++#2
++#Write a program that asks the user to enter the area code (for example FI) and prints out the airports
++#located in that country ordered by airport type.
++# For example, Finland has 65 small airports,15 helicopter airports and so on.
++def get_type_by_areacode(iso_country):
++    sql = f"SELECT type, count(*)as count FROM airport WHERE iso_country='{iso_country}'group by type order by count desc"
++    print(sql)
++    cursor = connection.cursor()
++    cursor.execute(sql)
++    result = cursor.fetchall()
++    if cursor.rowcount > 0:
++        for row in result:
++            print(f"the type of {row[0]} is {row[1]}")
++
++    return
++
++iso_country = input("Enter area code: ")
++get_type_by_areacode(iso_country)
++'''
++#3Write a program that asks the user to enter the ICAO codes of two airports.
++# The program prints out the distance between the two airports in kilometers.
++
++from geopy.distance import geodesic
++
++def coordinates(cursor,ident):
++    sql = f"SELECT latitude_deg, longitude_deg FROM airport WHERE ident='{ident}'"
++    cursor.execute(sql)
++    return cursor.fetchall()
++
++def cal_distance(coord1,coord2):
++    return geodesic(coord1,coord2).kilometers
+ 
++def main():
++    airport1_icao = input("Enter airport ident: ")
++    airport2_icao = input("Enter airport ident: ")
++    cursor = connection.cursor()
++    airport1_coord1 = coordinates(cursor,airport1_icao)
++    airport2_coord2 = coordinates(cursor,airport2_icao)
++    if airport1_coord1 is None or airport2_coord2 is None:
++        print(f"One or both airports not found in the database.")
++    else:
++        distance = cal_distance(airport1_coord1,airport2_coord2)
++        print(f"the distance between {airport1_icao} and {airport2_icao} is {distance}")
++    cursor.close()
++    connection.close()
++
++if __name__ == "__main__":
++    main()
